@@ -10,7 +10,7 @@ public class StartCommand implements Command{
 
     private final SendMsgBotService send;
 
-    private final static String hello = "Привет, я бот созданный в целях изучение Java и Java Spring";
+    public final static String hello = "Привет, я бот созданный в целях изучение Java и Java Spring";
 
     @Override
     public void execute(Update update) {

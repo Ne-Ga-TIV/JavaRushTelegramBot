@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @AllArgsConstructor
 public class HelpCommand implements  Command{
 
-    private final static String commandMenu = "/start - Команда для начала работы\n" +
+    public final static String commandMenu = "/start - Команда для начала работы\n" +
                                               "/stop - Остановить бота\n";
     private final SendMsgBotService send;
     @Override
