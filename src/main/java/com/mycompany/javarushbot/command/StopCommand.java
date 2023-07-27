@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @AllArgsConstructor
 public class StopCommand implements Command{
 
-    private final static String bye = "Пока, до новый встреч!";
+    public final static String bye = "Пока, до новый встреч!";
 
     private final SendMsgBotService send;
 

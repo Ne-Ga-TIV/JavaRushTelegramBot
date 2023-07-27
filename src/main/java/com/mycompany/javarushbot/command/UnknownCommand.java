@@ -8,7 +8,7 @@ import static com.mycompany.javarushbot.command.CommandName.HELP;
 
 @AllArgsConstructor
 public class UnknownCommand implements Command{
-    private final static String unknownCommand = "Прости, но я выполняю только готовые команды, чтобы узнать их список введи " + HELP.getCommandName() ;
+    public final static String unknownCommand = "Прости, но я выполняю только готовые команды, чтобы узнать их список введи " + HELP.getCommandName() ;
 
     private final SendMsgBotService send;
     @Override
