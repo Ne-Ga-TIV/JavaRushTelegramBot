@@ -15,6 +15,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 @Component
 @AllArgsConstructor
 public class Initializer {
+
     private JavaRushBot bot;
 
     @EventListener({ContextRefreshedEvent.class})
