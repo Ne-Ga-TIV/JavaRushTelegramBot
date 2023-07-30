@@ -2,8 +2,11 @@ package com.mycompany.javarushbot.bot;
 
 import com.mycompany.javarushbot.command.CommandContainer;
 import com.mycompany.javarushbot.service.SendMsgBotService;
+import com.mycompany.javarushbot.service.TelegramUserService;
+import com.mycompany.javarushbot.service.TelegramUserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -11,7 +14,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import static com.mycompany.javarushbot.command.CommandName.NO;
 
-@Slf4j
 @Component
 public class JavaRushBot extends TelegramLongPollingBot {
 
@@ -21,10 +23,11 @@ public class JavaRushBot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String token;
 
-    private final CommandContainer container;
+    private final CommandContainer commandContainer;
 
-    public JavaRushBot() {
-        this.container = new CommandContainer(new SendMsgBotService(this));
+    @Autowired
+    public JavaRushBot(TelegramUserService telegramUserService) {
+        this.commandContainer = new CommandContainer(new SendMsgBotService(this), telegramUserService);
     }
 
 
@@ -35,10 +38,10 @@ public class JavaRushBot extends TelegramLongPollingBot {
             String message = update.getMessage().getText().trim();
             if(message.startsWith(COMMAND_PREFIX)){
                 String command = message.split(" ")[0].toLowerCase();
-                container.retrieveCommand(command).execute(update);
+                commandContainer.retrieveCommand(command).execute(update);
             }
             else
-                container.retrieveCommand(NO.getCommandName()).execute(update);
+                commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
         }
     }
 

@@ -5,7 +5,7 @@ import com.mycompany.javarushbot.command.CommandContainer;
 import com.mycompany.javarushbot.command.CommandName;
 import com.mycompany.javarushbot.command.UnknownCommand;
 import com.mycompany.javarushbot.service.SendMsgBotService;
-import com.mycompany.javarushbot.service.SendMsgBotServiceTest;
+import com.mycompany.javarushbot.service.TelegramUserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,8 @@ public class CommandContainerTest {
     @BeforeEach
     public void init(){
         SendMsgBotService send = Mockito.mock(SendMsgBotService.class);
-        cmdContainer = new CommandContainer(send);
+        TelegramUserServiceImpl telegramUserService = Mockito.mock(TelegramUserServiceImpl.class);
+        cmdContainer = new CommandContainer(send, telegramUserService);
     }
 
     @Test

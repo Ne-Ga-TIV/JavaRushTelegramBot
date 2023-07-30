@@ -5,7 +5,6 @@ import com.mycompany.javarushbot.service.SendMsgBotService;
 import lombok.AllArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import static com.mycompany.javarushbot.command.CommandName.HELP;
 
 @AllArgsConstructor
 public class NoCommands implements Command{
