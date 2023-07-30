@@ -6,21 +6,17 @@ import lombok.AllArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @AllArgsConstructor
-public class StopCommand implements Command{
-
-    public final static String bye = "Пока, до новый встреч!";
+public class StatCommand implements  Command{
 
     private final SendMsgBotService send;
     private final TelegramUserService telegramUserService;
 
+    private final String stat = "Наданный момент ботом пользоуютеся %s человек";
+
+
     @Override
     public void execute(Update update) {
-
-        send.sendMessage(update.getMessage().getChatId().toString(), bye);
-        telegramUserService.findByChatId(update.getMessage().getChatId().toString())
-                .ifPresent(it -> {
-                    it.setActive(false);
-                    telegramUserService.save(it);
-                });
+        int activeUsers =  telegramUserService.retrieveAllActiveUsers().size();
+        send.sendMessage(update.getMessage().getChatId().toString(), String.format(stat, activeUsers));
     }
 }
