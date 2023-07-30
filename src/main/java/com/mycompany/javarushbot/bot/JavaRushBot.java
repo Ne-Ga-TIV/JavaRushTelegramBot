@@ -24,6 +24,8 @@ public class JavaRushBot extends TelegramLongPollingBot {
     private final CommandContainer container;
 
     public JavaRushBot() {
+        for(int i = 0; i < 100; i++)
+            System.out.println("USER = " + username + " TOKEN = " + token);
         this.container = new CommandContainer(new SendMsgBotService(this));
     }
 

@@ -7,7 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JavaRushTelegramBotApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavaRushTelegramBotApplication.class, args);
+
+		String properties = System.getenv("SPRING_PROFILES_ACTIVE");
+		SpringApplication application = new SpringApplication(JavaRushTelegramBotApplication.class);
+
+		if(properties != null)
+			application.setAdditionalProfiles(properties);
+
+		application.run(args);
 	}
 
 }

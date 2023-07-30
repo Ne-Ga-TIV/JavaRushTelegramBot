@@ -1,0 +1,22 @@
+version:  '3.1'
+
+services:
+  javarushbot:
+    depends_on:
+      - javarushbot-db
+    build:
+      context: .
+    environment:
+      BOT_NAME: ${BOT_NAME}
+      BOT_TOKEN: ${BOT_TOKEN}
+      SPRING_PROFILES_ACTIVE: docker
+    restart: always
+  javarushbot-db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'javarush_bot'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - "3307:3306"
+
